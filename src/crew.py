@@ -1,7 +1,12 @@
-from crewai import Crew, Agent, Process, Task
-from crewai.project import CrewBase, agent, task, crew, before_kickoff, after_kickoff
+from crewai import Crew, Agent, Process, Task, LLM
+from crewai.project import CrewBase, agent, task, crew
 
-from config import LLM
+from config import MODEL, MISTRAL_API_KEY
+
+model = LLM(
+    model=MODEL,
+    api_key=MISTRAL_API_KEY
+)
 
 @CrewBase
 class StructureCrew:
@@ -16,30 +21,10 @@ class StructureCrew:
     def structure_agent(self) -> Agent:
         return Agent(
             role='Structurator',
-            goal='Create the structure of the book',
+            goal='Create the structure of the book, with the ideas for the different chapters and ideas for images',
             backstory='You are someone who loves to organize and structure things. You are very good at making a well made structure for a book for every kind of topic.',
             memory=False,
-            llm=LLM,
-        )
-    
-    @agent
-    def chapter_agent(self) -> Agent:
-        return Agent(
-            role='Chapter Creator',
-            goal='Create ideas for the different chapters',
-            backstory='You are someone who loves to write and create ideas for chapters. You are very good at making a well made ideas for chapters for a book for every kind of topic.',
-            memory=False,
-            llm=LLM,
-        )
-    
-    @agent
-    def image_agent(self) -> Agent:
-        return Agent(
-            role='Image Creator',
-            goal='Create ideas for images',
-            backstory='You are someone who loves to create images. You are very good at making a well made ideas for images for a book for every kind of topic.',
-            memory=False,
-            llm=LLM,
+            llm=model,
         )
     
     @task
@@ -52,68 +37,36 @@ class StructureCrew:
             # Title
             ## Chapter 1
             ### Section 1.1
+            - Text idea 1
+            - Text idea 2
+            ...
+            - Image idea 1 (the prompt that you would give to an image generator to generate the image)
+            - Image idea 2 (the prompt that you would give to an image generator to generate the image)
+            ...
             ### Section 1.2
+            - Text idea 1
+            - Text idea 2
+            ...
+            - Image idea 1 (the prompt that you would give to an image generator to generate the image)
+            - Image idea 2 (the prompt that you would give to an image generator to generate the image)
+            ...
             ## Chapter 2
             ### Section 2.1
+            - Text idea 1
+            - Text idea 2
+            ...
+            - Image idea 1 (the prompt that you would give to an image generator to generate the image)
+            - Image idea 2 (the prompt that you would give to an image generator to generate the image)
+            ...
             ### Section 2.2
-            ''',
-        )
-    
-    @task
-    def chapter_task(self) -> Task:
-        return Task(
-            description='Create ideas for the different chapters of the book about the topic: {topic}',
-            agent=self.chapter_agent(),
-            expected_output='''
-            The structure of the book with the different ideas in it like this plain example:
-            # Title
-            ## Chapter 1
-            ### Section 1.1
-            - Idea 1
-            - Idea 2
-            ### Section 1.2
-            - Idea 1
-            - Idea 2
-            ## Chapter 2
-            ### Section 2.1
-            - Idea 1
-            - Idea 2
-            ### Section 2.2
-            - Idea 1
-            - Idea 2
-            ''',
-        )
-    
-    @task
-    def image_task(self) -> Task:
-        return Task(
-            description='Create ideas for images for the book about the topic: {topic}',
-            agent=self.image_agent(),
-            expected_output='''
-            The structure of the book with the different ideas found earlier and ideas for images in it like this plain example:
-            # Title
-            ## Chapter 1
-            ### Section 1.1
-            - Idea 1
-            - Idea 2
-            - Image Idea 1
-            - Image Idea 2
-            ### Section 1.2
-            - Idea 1
-            - Idea 2
-            - Image Idea 1
-            - Image Idea 2
-            ## Chapter 2
-            ### Section 2.1
-            - Idea 1
-            - Idea 2
-            - Image Idea 1
-            - Image Idea 2
-            ### Section 2.2
-            - Idea 1
-            - Idea 2
-            - Image Idea 1
-            - Image Idea 2
+            - Text idea 1
+            - Text idea 2
+            ...
+            - Image idea 1 (the prompt that you would give to an image generator to generate the image)
+            - Image idea 2 (the prompt that you would give to an image generator to generate the image)
+            ...
+            ...
+            # Conclusion
             ''',
         )
     

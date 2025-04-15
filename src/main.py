@@ -1,7 +1,7 @@
-from crew import EbookCrew
+from crew import StructureCrew
 
 def run_1(topic: str):
     inputs = {
         'topic': topic
     }
-    EbookCrew().crew().kickoff(inputs=inputs)
+    StructureCrew().crew().kickoff(inputs=inputs)
