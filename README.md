@@ -25,7 +25,7 @@
 <br />
 <div align="center">
 
-<h3 align="center">Ebooks generator</h3>
+<h1 align="center">Ebooks generator</h1>
 
   <p align="center">
     A complete ebook generator powered by AI.
@@ -74,7 +74,10 @@ This is powered by the Mistral AI API, using crewAI to manage the agents and tas
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
+
+* [![Mistral][Mistral]][Mistral-url]
+* [![Streamlit][Streamlit]][Streamlit-url]
+* [![CrewAI][CrewAI]][CrewAI-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -88,31 +91,28 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
   ```sh
-  npm install npm@latest -g
+  python3.12 -m venv venv
+  source venv/bin/activate
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [Mistral](https://console.mistral.ai/api-keys)
 2. Clone the repo
    ```sh
    git clone https://github.com/ClemouDouard/ebooks_generator.git
    ```
-3. Install NPM packages
+3. Install packages
    ```sh
-   npm install
+   pip install -r requirements.txt
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
+4. Create a `src/config.py` file and enter your API key as well as your LLM model
    ```sh
-   git remote set-url origin ClemouDouard/ebooks_generator
-   git remote -v # confirm the changes
+   cd src
+   touch config.py
+   echo "API_KEY = 'ENTER YOUR API'" >> config.py
+   echo "MODEL = 'ENTER YOUR MODEL'" >> config.py
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -122,9 +122,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Work in progress
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,7 +131,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Structure
+- [x] Structure
 - [ ] Ideas
 - [ ] Content
 - [ ] Interface
@@ -166,15 +164,6 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the project_license. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
@@ -182,16 +171,6 @@ Project Link: [https://github.com/ClemouDouard/ebooks_generator](https://github.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -226,3 +205,9 @@ Project Link: [https://github.com/ClemouDouard/ebooks_generator](https://github.
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[Streamlit-url]: https://streamlit.io/
+[Streamlit]: https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white
+[CrewAI-url]: https://www.crewai.com/
+[CrewAI]: https://img.shields.io/badge/CrewAI-000000?style=for-the-badge&logo=CrewAI&logoColor=white
+[Mistral-url]: https://mistral.ai/
+[Mistral]: https://img.shields.io/badge/Mistral-000000?style=for-the-badge&logo=Mistral&logoColor=white

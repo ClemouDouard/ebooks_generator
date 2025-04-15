@@ -1,11 +1,11 @@
 from crewai import Crew, Agent, Process, Task, LLM
 from crewai.project import CrewBase, agent, task, crew
 
-from config import MODEL, MISTRAL_API_KEY
+from config import MODEL, API_KEY
 
 model = LLM(
     model=MODEL,
-    api_key=MISTRAL_API_KEY
+    api_key=API_KEY
 )
 
 @CrewBase
