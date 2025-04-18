@@ -9,4 +9,6 @@ from main import run_1
 topic = st.text_input("What is the topic of your book?")
 
 if st.button("Generate"):
-    run_1(topic)
+    struct = run_1(topic)
+    md_content = struct.raw
+    st.markdown(md_content)
